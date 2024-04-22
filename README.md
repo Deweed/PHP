@@ -1,0 +1,18 @@
+Crie o método validaProjetovalidaProjetovalidaProjetovalidaProjeto na classe DistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimento. Este método deverá
+receber o nomeProjetonomeProjetonomeProjetonomeProjeto como parâmetro, e retornar truetruetruetrue se a datafimdatafimdatafimdatafim do Projeto
+estiver vazia, caso contrário retornará falsfalsfalsfalseeee.
+c) Crie o método imprimeProjetoimprimeProjetoimprimeProjetoimprimeProjeto na classe DistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimento. Este método
+deverá retornar uma String com os seguintes atributos: nomProjetonomProjetonomProjetonomProjeto, descridescridescridescricaocaocaocao,
+datainiciodatainiciodatainiciodatainicio, datafimdatafimdatafimdatafim, descAlimentodescAlimentodescAlimentodescAlimento e qtdeqtdeqtdeqtde.
+d) Crie o método validaProjetovalidaProjetovalidaProjetovalidaProjeto na classe TrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntario. Este método deverá
+receber o nomeProjetonomeProjetonomeProjetonomeProjeto como parâmetro, e retornar truetruetruetrue se a duracaoduracaoduracaoduracao for
+superior a 2, caso contrário retornará falsfalsfalsfalseeee.
+e) Crie o método imprimeProjetoimprimeProjetoimprimeProjetoimprimeProjeto na classe TrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntario. Este método
+deverá retornar uma String com os seguintes atributos: nomProjetonomProjetonomProjetonomProjeto, descridescridescridescricaocaocaocao,
+datainiciodatainiciodatainiciodatainicio, datafimdatafimdatafimdatafim, tipoTrabalhotipoTrabalhotipoTrabalhotipoTrabalho e duracaoduracaoduracaoduracaoTrabalhoTrabalhoTrabalhoTrabalho.
+f)f)f)f) Crie uma classe denominada ProjetoSocialProjetoSocialProjetoSocialProjetoSocial,,,, que deverá possuir oooo public staticpublic staticpublic staticpublic static
+void main(String[] args)void main(String[] args)void main(String[] args)void main(String[] args)
+Em cada uma das opções crie um objeto do tipo específico (DistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimentoDistribuicaoAlimento e
+TrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntarioTrabalhoVoluntario).
+Em seguida deverá chamar o método validaProjetovalidaProjetovalidaProjetovalidaProjeto e fazer a impressão na tela (método
+imprimeProjetoimprimeProjetoimprimeProjetoimprimeProjeto).).).). Utilize o System.out.printlnSystem.out.printlnSystem.out.printlnSystem.out.println para mostrar toda e qualquer impressão.
