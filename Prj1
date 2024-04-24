@@ -1,0 +1,124 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimuladorBBB extends JFrame {
+    private String[] competidores;
+    private int[] votos;
+    private JButton[] botoesVotar;
+    private JTextArea resultadoArea;
+    private JTextArea logArea;
+    private JScrollPane logScrollPane;
+
+    public SimuladorBBB(String[] competidores) {
+        this.competidores = competidores;
+        this.votos = new int[competidores.length];
+
+        setTitle("Simulador do BBB");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 300);
+
+        JPanel panel = new JPanel(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        botoesVotar = new JButton[competidores.length];
+        for (int i = 0; i < competidores.length; i++) {
+            botoesVotar[i] = new JButton("Votar em " + competidores[i]);
+            final int index = i;
+            botoesVotar[i].addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    votar(index);
+                }
+            });
+            panel.add(botoesVotar[i], gbc);
+        }
+
+        JButton btnVerVotos = new JButton("Ver Campeão!");
+        btnVerVotos.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mostrarLogVotos();
+            }
+        });
+        panel.add(btnVerVotos, gbc);
+
+        resultadoArea = new JTextArea(5, 20);
+        resultadoArea.setEditable(false);
+
+        JScrollPane resultadoScrollPane = new JScrollPane(resultadoArea);
+
+        add(panel, BorderLayout.CENTER);
+        add(resultadoScrollPane, BorderLayout.SOUTH);
+
+        setVisible(true);
+        setLocationRelativeTo(null);
+    }
+
+    private void votar(int index) {
+        votos[index]++;
+        resultadoArea.append("Voto computado para " + competidores[index] + "!\n");
+    }
+
+    private void mostrarLogVotos() {
+        JFrame logFrame = new JFrame("Log de Votos");
+        logFrame.setSize(300, 200);
+
+        logArea = new JTextArea(10, 20);
+        logArea.setEditable(false);
+        logScrollPane = new JScrollPane(logArea);
+        logScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        logFrame.add(logScrollPane);
+
+        atualizarLogVotos();
+
+        logFrame.setVisible(true);
+        logFrame.setLocationRelativeTo(this);
+
+        exibirPosicoes();
+    }
+
+    private void atualizarLogVotos() {
+        logArea.setText("Resultado da votação:\n");
+        for (int i = 0; i < competidores.length; i++) {
+            logArea.append(competidores[i] + ": " + votos[i] + " votos\n");
+        }
+    }
+
+    private void exibirPosicoes() {
+        int primeiro = 0;
+        int segundo = 1;
+        int terceiro = 2;
+
+        for (int i = 1; i < competidores.length; i++) {
+            if (votos[i] > votos[primeiro]) {
+                terceiro = segundo;
+                segundo = primeiro;
+                primeiro = i;
+            } else if (votos[i] > votos[segundo]) {
+                terceiro = segundo;
+                segundo = i;
+            } else if (votos[i] > votos[terceiro]) {
+                terceiro = i;
+            }
+        }
+
+        JOptionPane.showMessageDialog(this,
+                "Posições:\n" +
+                        "1º lugar: " + competidores[primeiro] + " com " + votos[primeiro] + " votos\n" +
+                        "2º lugar: " + competidores[segundo] + " com " + votos[segundo] + " votos\n" +
+                        "3º lugar: " + competidores[terceiro] + " com " + votos[terceiro] + " votos\n",
+                "Posições", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                String[] competidores = {"Marcin Mecanico Peugeot", "Maria Dedao de Ferro", "Julinha Corta Madeira"};
+                new SimuladorBBB(competidores);
+            }
+        });
+    }
+}
